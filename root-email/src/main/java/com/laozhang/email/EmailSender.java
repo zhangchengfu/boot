@@ -15,7 +15,7 @@ public class EmailSender {
 
 	private Logger logger = LogManager.getLogger(getClass());
 	
-	private String defaltFrom = "290807730@qq.com";
+	private String defaltFrom = "0807730@qq.com";
 	
 	@Autowired
 	private JavaMailSender javaMailSender;
