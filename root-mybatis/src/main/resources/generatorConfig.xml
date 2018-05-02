@@ -1,0 +1,66 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 配置文件路径 -->
+    <properties resource="generatorConfig.properties"/>
+
+    <context id="mysql" defaultModelType="hierarchical" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="false"/>
+            <!--<property name="suppressAllComments" value="true"/>-->
+            <property name="javaFileEncoding" value="UTF-8"/>
+        </commentGenerator>
+
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/mysql?serverTimezone=UTC"
+                        userId="root"
+                        password="taobang">
+        </jdbcConnection>
+        <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"-->
+                        <!--connectionURL="jdbc:oracle:thin:@*.*.*.*:*:*"-->
+                        <!--userId="*"-->
+                        <!--password="*">-->
+        <!--</jdbcConnection>-->
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.laozhang.mybatis.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="javaExampleTargetPackage" value="com.laozhang.mybatis.model"/>
+            <property name="javaExampleTargetProject" value="src/main/java"/>
+        </javaModelGenerator>
+
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.laozhang.mybatis.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table schema="mysql" tableName="test_mybatis" domainObjectName="TestMybatis" mapperName="TestMybatisMapper">
+            <generatedKey column="id" sqlStatement="MySql" type="post" identity="true"/>
+        </table>
+
+        <!--<table schema="sipcommunity" tableName="FLOW_FORM_MAIN" domainObjectName="FlowFormMain"-->
+               <!--mapperName="FlowFormMainMapper">-->
+            <!--<property name="modelOnly" value="false"/>-->
+            <!--<generatedKey column="FORM_ID" sqlStatement="SELECT SYS_GUID() FROM DUAL" identity="false"/>-->
+        <!--</table>-->
+    </context>
+</generatorConfiguration>
